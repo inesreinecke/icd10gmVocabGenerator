@@ -1,4 +1,4 @@
-#ICD10GM vocabulary generator for usage with OHDSI OMOP
+# ICD10GM vocabulary generator for usage with OHDSI OMOP
 This project generates a stacked ICD10GM vocabulary for the usage with OMOP.
 
 It reads ICD10GM txt files provided by DIMDI (https://www.dimdi.de/dynamic/de/klassifikationen/downloads/) on a yearly cycle and process the concepts with code and description into the pattern corresponding to the concept table of OHDSI OMOP CDM v5.
