@@ -11,6 +11,8 @@ git clone https://zmi.uniklinikum-dresden.de/bitbucket/scm/icd10gm/icd10gmvokabg
 
 To build the project and create the executable jar (fat jar with dependencies) file, Maven has to be installed.
 
+text files from DIMDI with ICD10GM codes and description by year are available in the project in directory allCodingsByYear/
+
 ## Build the jar file from soure code
 
 cd "$DEV_PATH"/icd10gmgen
