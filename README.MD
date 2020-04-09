@@ -11,21 +11,21 @@ git clone https://zmi.uniklinikum-dresden.de/bitbucket/scm/icd10gm/icd10gmvokabg
 
 To build the project and create the executable jar (fat jar with dependencies) file, Maven has to be installed.
 
-### Build the jar file from soure code
+## Build the jar file from soure code
 
 cd "$DEV_PATH"/icd10gmgen
 mvn package
 
-### Run jar with expected arguments
+## Run jar with expected arguments
 
 java -jar target/icd10gmgen-0.0.1-SNAPSHOT.jar <currentYear> <inputFile> <database> <dbuser> <dbpassword> <table> <dbserverIp> <dbServerPort>
 
 Sample for execution for year 2004:
 java -jar target/icd10gmgen-0.0.1-SNAPSHOT.jar 2004 /"$ICD10GM_FILE_DIR"/2004.txt OHDSI postgres omop dev_cdm.concept 127.0.0.1 5432
 
-### Deployment
+## Deployment
 
 sh and bat file available to build ICD10GM vocabulary stack from year 2000 to 2020
 
-### Authors
+## Authors
 Ines Reinecke - Initial work - ProjectOwner
