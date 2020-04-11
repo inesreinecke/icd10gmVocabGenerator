@@ -43,7 +43,7 @@ public class Main {
 				 // create new list of concepts from the database and define the next unique conceptId
 				 List<KnownConcept> knownConcepts = myDbCon.readConcepts();
 				 int currentMaxId = myDbCon.getCurrentMaxId();
-				 int nextId = currentMaxId < params.getMinId() ? params.getMinId() : currentMaxId++;
+				 int nextId = (currentMaxId < params.getMinId()) ? params.getMinId() : currentMaxId++;
 					
 				 // create new knownConceptProcessor object that contains all knownConcepts
 				 KnownConceptProcessor knownConceptProcessor = new KnownConceptProcessor( knownConcepts, nextId );

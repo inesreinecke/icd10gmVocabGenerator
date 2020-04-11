@@ -20,6 +20,7 @@ public class ImportConcept {
 		if(input != null) {
 			if(input.endsWith("!")) input = input.substring(0, input.length() - 1);
 			if(input.endsWith(".-")) input = input.substring(0, input.length() - 2);
+			if(input.endsWith("-")) input = input.substring(0, input.length() - 1);
 			if(input.equals("UNDEF")) return null;
 			return input;
 		}
