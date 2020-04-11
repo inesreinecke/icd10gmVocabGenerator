@@ -12,11 +12,13 @@ import de.zmi.icd10gmgen.exception.InvalidDataException;
 public class KnownConceptProcessor {
 	
 	private List<KnownConcept> data = null;
+	// check if uniqueConceptId exists already in the database, only when empty this starts with -1 or 2.000.000 - need to check exact start concept_id
 	private int uniqueConceptId = -1;
 	
-	public KnownConceptProcessor(List<KnownConcept> input) throws InvalidDataException {
+	public KnownConceptProcessor(List<KnownConcept> input, int currentMaxId) throws InvalidDataException {
 		if(input == null) throw new InvalidDataException();
 		this.data = input;
+		this.uniqueConceptId = currentMaxId;
 		
 		// calculate next concept Id
 		for(KnownConcept kc : data) {

@@ -10,20 +10,20 @@ public class Params {
 	private String dbServerIp;
 	private int dbServerPort;
 	private String encoding = "ISO-8859-1";
+	private int minId = 2000000;
 	
 	public Params() {
 	}
 
 	public Params getDefaults() {
 		this.year = "2002";
-		this.filename = "//Users//wabommel//work//coding//ICD10GM//allCodingsByYear//icd10v20.txt";
+		this.filename = "//Users//wabommel//work//coding//ICD10GM//allCodingsByYear//2004.txt";
 		this.database = "OHDSI";
 		this.dbUserName = "postgres";
 		this.dbUserPassword = "omop";
 		this.table = "dev_cdm.concept";
 		this.dbServerIp = "127.0.0.1";
 		this.dbServerPort = 5432;
-		this.encoding = "ISO-8859-1";
 		return this;
 	}
 	
@@ -99,6 +99,14 @@ public class Params {
 		this.encoding = encoding;
 	}
 	
+	public int getMinId() {
+		return minId;
+	}
+
+	public void setMinId(int minId) {
+		this.minId = minId;
+	}
+
 	/**
 	 * based on the year that was given, we substract one day (so 12-31 of the former year)
 	 * @return

@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.zmi.icd10gmgen.exception.DbException;
-import de.zmi.icd10gmgen.model.ImportConcept;
 import de.zmi.icd10gmgen.model.KnownConcept;
 import de.zmi.icd10gmgen.model.Params;
 
@@ -59,6 +58,15 @@ public class DbConnection {
 		return isConnected;
 	}
 	
+	public int getCurrentMaxId() throws SQLException {
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery("SELECT MAX(concept_id) FROM " + params.getTable());
+		if(rs.next()) {
+			return rs.getInt(1);
+		}
+		return 0;
+	}
+	
 	public List<KnownConcept> readConcepts() throws SQLException {
 		List<KnownConcept> concepts = new ArrayList<KnownConcept>();
 		
@@ -86,7 +94,6 @@ public class DbConnection {
 	}
 	
 	public DbConnection insertConcept(KnownConcept newConcept) throws SQLException {
-		
 		Statement st = con.createStatement();
 
 		String query = "INSERT INTO " + 

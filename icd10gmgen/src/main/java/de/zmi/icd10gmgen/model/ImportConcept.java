@@ -35,7 +35,7 @@ public class ImportConcept {
 	}
 
 	public String getName() {
-		return name.replaceAll("'", "''");
+		return name.replaceAll("'", "");
 	}
 
 	public void setName(String name) {

@@ -59,7 +59,7 @@ public class KnownConcept {
 	}
 
 	public String getConceptName() {
-		return conceptName.replaceAll("'", "''");
+		return conceptName.replaceAll("'", "");
 	}
 
 	public KnownConcept setConceptName(String conceptName) {
@@ -147,6 +147,11 @@ public class KnownConcept {
 		this.conceptClassId = "D";
 		this.invalidReason="";
 		return this;
+	}
+	
+	@Override
+	public String toString() {
+		return "conceptId=" + conceptId + " name=" + conceptName;
 	}
 	
 	

@@ -29,24 +29,27 @@ public class Main {
 		 params.setDbServerPort(Integer.parseInt(args[7]));
 		 
 		 // params get default values - predefined in Params.java
-		 //Params params = new Params().getDefaults();
+//		 Params params = new Params().getDefaults();
 
 		 
 		 try {
 			 // connect to the database that contains a concept table with ICD10GM vocabulary
-			 DbConnection con = new DbConnection(params);
+			 DbConnection myDbCon = new DbConnection(params);
 			 
-			 if(con.isConnected()) {
+			 if(myDbCon.isConnected()) {
 				 System.out.println("connection successful");
-				 System.out.println("db version: "+con.getDbVersion());
+				 System.out.println("db version: "+myDbCon.getDbVersion());
 				 
-				 // create new list of concepts from the database
-				 List<KnownConcept> knownConcepts = con.readConcepts();
+				 // create new list of concepts from the database and define the next unique conceptId
+				 List<KnownConcept> knownConcepts = myDbCon.readConcepts();
+				 int currentMaxId = myDbCon.getCurrentMaxId();
+				 int nextId = currentMaxId < params.getMinId() ? params.getMinId() : currentMaxId++;
+					
 				 // create new knownConceptProcessor object that contains all knownConcepts
-				 KnownConceptProcessor knownConceptProcessor = new KnownConceptProcessor( knownConcepts );
+				 KnownConceptProcessor knownConceptProcessor = new KnownConceptProcessor( knownConcepts, nextId );
 				
 				 System.out.println("found "+knownConceptProcessor.getSize()+" in the db");
-				 
+				 System.out.println("next new valid conceptId will be "+nextId);
 				 // connect to the file that needs to be loaded into the concept table
 				 FileConnection myFileCon = new FileConnection(params);
 				 
@@ -69,6 +72,7 @@ public class Main {
 					 // case-1: we found a concept for the given code
 					 if(kc != null) {
 						 // case-1.1: name of known and imported concept are equal
+
 						 if(kc.getConceptName().equals( importedC.getName() )) {
 							 // no action needed, we throw away the new concept from the file list, since it is the same as already in the database
 						 }
@@ -77,10 +81,11 @@ public class Main {
 							 // update the existing known concept record and invalidate it
 							 kc.setInvalidReason("U");
 							 kc.setValidEndDate( params.getCurrentValidEndDate() );
-							 con.updateConcept(kc);
+							 myDbCon.updateConcept(kc);
+
 							 //increase counter for updated concept records
 							 updatedRecords++;
-							 
+
 							 // now create a new concept record and validate it
 							 KnownConcept newConcept = new KnownConcept()
 								 .setDefaults()
@@ -89,7 +94,8 @@ public class Main {
 								 // ensure correct concept_id is generated
 								 .setConceptId( knownConceptProcessor.getNextConceptIdAndIncrement() )
 								 .setValidStartDate( params.getCurrentValidStartDate() );
-							 con.insertConcept(newConcept);
+							 myDbCon.insertConcept(newConcept);
+							 
 							//increase counter for new concept records
 							 newRecords++;
 						 }
@@ -104,9 +110,11 @@ public class Main {
 							 .setConceptName(importedC.getName())
 							 .setConceptId( knownConceptProcessor.getNextConceptIdAndIncrement() )
 							 .setValidStartDate( params.getCurrentValidStartDate() );
-						 con.insertConcept(newConcept);
+						 myDbCon.insertConcept(newConcept);
 						//increase counter for new concept records
 						 newRecords++;
+						 
+						 System.out.println("NEW2: " + newConcept.toString());
 					 }
 				 }
 				 

@@ -31,14 +31,14 @@ public class FileConnection {
 	
 	public List<ImportConcept> readConcepts() {
 		List<ImportConcept> result = new ArrayList<ImportConcept>();
+		
 
 		try {
 			if(reader != null) {
 				String line = reader.readLine();
 				while (line != null) {
-					line = reader.readLine();
-						
 					if(line != null) {
+//						System.out.println("LINE:" + line.toString());
 						String split[] = line.split(";");
 						if(split.length == 2) { 
 							try {
@@ -46,7 +46,9 @@ public class FileConnection {
 								result.add(newConcept);
 							} catch(InvalidDataException ignored) {}
 						}
-					}					
+					}	
+					// now read a new line
+					line = reader.readLine();
 				}
 				reader.close();
 			}
