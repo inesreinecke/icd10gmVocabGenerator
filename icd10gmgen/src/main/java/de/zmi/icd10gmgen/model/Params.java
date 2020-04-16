@@ -9,7 +9,7 @@ public class Params {
 	private String table;
 	private String dbServerIp;
 	private int dbServerPort;
-	private String encoding = "ISO-8859-1";
+	private String encoding;
 	private int minId = 2000000;
 	
 	public Params() {
@@ -24,6 +24,7 @@ public class Params {
 		this.table = "dev_cdm.concept";
 		this.dbServerIp = "127.0.0.1";
 		this.dbServerPort = 5432;
+		this.encoding = "ISO-8859-1";
 		return this;
 	}
 	

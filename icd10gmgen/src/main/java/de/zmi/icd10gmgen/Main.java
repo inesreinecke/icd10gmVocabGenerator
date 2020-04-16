@@ -13,7 +13,7 @@ public class Main {
 	 public static void main(String[] args) {
 
 		 // verify input parameters
-		 if(args.length != 8 ) {
+		 if(args.length != 9 ) {
 			 printExpectedParams();
 			 System.exit(-1);
 		 }
@@ -27,6 +27,7 @@ public class Main {
 		 params.setTable(args[5]);
 		 params.setDbServerIp(args[6]);
 		 params.setDbServerPort(Integer.parseInt(args[7]));
+		 params.setEncoding(args[8]); 
 		 
 		 // params get default values - predefined in Params.java
 //		 Params params = new Params().getDefaults();
@@ -131,7 +132,7 @@ public class Main {
 	 public static void printExpectedParams() {
 		 System.out.println();
 		 System.out.println("ICD10GM Generator, expected parameters... ");
-		 System.out.println("java -jar icd10gmgen.jar <currentYear> <inputFile> <database> <dbuser> <dbpassword> <table> <dbserverIp> <dbServerPort>");
+		 System.out.println("java -jar icd10gmgen.jar <currentYear> <inputFile> <database> <dbuser> <dbpassword> <table> <dbserverIp> <dbServerPort>  <encoding>");
 		 System.out.println();
 	 }
 }
