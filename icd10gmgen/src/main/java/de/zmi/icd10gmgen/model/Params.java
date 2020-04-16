@@ -12,6 +12,7 @@ public class Params {
 	private String encoding;
 	private int minId = 2000000;
 	
+	
 	public Params() {
 	}
 
