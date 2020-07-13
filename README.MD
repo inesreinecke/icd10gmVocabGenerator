@@ -5,7 +5,7 @@ It reads ICD10GM txt files provided by DIMDI (https://www.dimdi.de/dynamic/de/kl
 
 ## Getting Started - cloning the project
 
-git clone https://zmi.uniklinikum-dresden.de/bitbucket/scm/icd10gm/icd10gmvokabgenerator.git
+git clone https://github.com/inesreinecke/icd10gmVocabGenerator.git
 
 ## Prerequisites 
 
