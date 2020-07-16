@@ -14,9 +14,10 @@ public class KnownConceptProcessor {
 	private List<KnownConcept> data = null;
 	// check if uniqueConceptId exists already in the database, only when empty this starts with -1 or 2.000.000 - need to check exact start concept_id
 	private int uniqueConceptId = -1;
+	final static private String errorMessage = "input is null";
 	
 	public KnownConceptProcessor(List<KnownConcept> input, int currentMaxId) throws InvalidDataException {
-		if(input == null) throw new InvalidDataException();
+		if(input == null) throw new InvalidDataException(errorMessage);
 		this.data = input;
 		this.uniqueConceptId = currentMaxId;
 		
