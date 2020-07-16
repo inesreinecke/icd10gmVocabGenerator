@@ -20,14 +20,17 @@ mvn package
 
 ## Run jar with expected arguments
 
-java -jar target/icd10gmgen-0.0.1-SNAPSHOT.jar <currentYear> <inputFile> <database> <dbuser> <dbpassword> <table> <dbserverIp> <dbServerPort>
+java -jar target/icd10gmgen-0.0.1-SNAPSHOT.jar <currentYear> <inputFile> <database> <dbuser> <dbpassword> <table> <dbserverIp> <dbServerPort>  <encoding>
 
 Sample for execution for year 2004:
-java -jar target/icd10gmgen-0.0.1-SNAPSHOT.jar 2004 /"$ICD10GM_FILE_DIR"/2004.txt OHDSI postgres omop dev_cdm.concept 127.0.0.1 5432
+java -jar target/icd10gmgen-0.0.1-SNAPSHOT.jar 2004 /"$ICD10GM_FILE_DIR"/2004.txt OHDSI postgres omop dev_cdm.concept 127.0.0.1 5432 UTF-8
 
-## Deployment
+## consolidated bashfiles to process multible years
 
-sh and bat file available to build ICD10GM vocabulary stack from year 2000 to 2020
+You need to adapt the provieded scripts to fit your database setup and environment.
+
+sh file available to build ICD10GM vocabulary stack from year 2000 to 2020 on icd10gmgen/icd10gm_generator2004TO2020.sh
+sh file available to build ICD10WHO vocabulary stack for year 2013, 2016, 2019 icd10gmgen/icd10who_gen_2013_16_19.sh
 
 ## Authors
 Ines Reinecke - Initial work - ProjectOwner
